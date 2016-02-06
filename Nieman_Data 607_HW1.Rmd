@@ -1,0 +1,34 @@
+---
+title: "Data 607 Homework 1"
+author: "Jeff Nieman"
+date: "February 5, 2016"
+output: html_document
+---
+
+
+```{r}
+
+#Accessing the Pittsburgh bridges source by downloading the file without headers and creating a data frame.
+
+bridges <- read.csv('https://archive.ics.uci.edu/ml/machine-learning-databases/bridges/bridges.data.version2', header=FALSE)
+
+#Adding in column names adapted from the data dictionary for readability
+
+colnames(bridges) <- c("Identifier","River","Location","Erected","Purpose","Length","Lanes","Clear-G","T-or-D","Material","Span","Rel-L","Type")
+head(bridges)
+
+#For readability changing the abbreviations of the river names
+
+bridges$River <- gsub("O", "Ohio", bridges$River)
+bridges$River <- gsub("A", "Allegheny", bridges$River)
+bridges$River <- gsub("M", "Monongahela", bridges$River)
+
+#Creating a new data frame with a subset of the columns
+
+bridgeshort <- bridges [, c(1,2,3,5,10,13)]
+head(bridgeshort)
+
+#Creating a new data frame with a subset of the rows
+bridgeshorter<- bridgeshort [1:25,]
+bridgeshorter
+```
